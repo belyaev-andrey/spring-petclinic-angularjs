@@ -11,8 +11,8 @@
 	<name>Spring Petclinic :: AngularJS Client</name>
 
 	<properties>
-		<node.version>v4.4.3</node.version>
-		<npm.version>2.15.1</npm.version>
+		<node.version>v16.10.0</node.version>
+		<npm.version>7.24.0</npm.version>
 	</properties>
 
 	<build>

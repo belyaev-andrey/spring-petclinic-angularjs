@@ -4,47 +4,53 @@ var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 
 var paths = {
-    "css"    : "src/css/*",
-    "fonts"  : "src/fonts/*",
-    "images" : "src/images/*",
-    "html"   : "src/scripts/**/*.html",
-    "js"     : "src/scripts/**/*.js",
-    "less"   : "src/less/*",
-    "dist"   : "target/dist/"
+    "css": "src/css/*",
+    "fonts": "src/fonts/*",
+    "images": "src/images/*",
+    "html": "src/scripts/**/*.html",
+    "js": "src/scripts/**/*.js",
+    "less": "src/less/*",
+    "dist": "target/dist/"
 };
 
-gulp.task('minify-css', function() {
+function minifyCss() {
     return gulp.src(paths.css)
         .pipe(cleanCSS())
         .pipe(gulp.dest(paths.dist + 'css/'));
-});
+}
 
-gulp.task('minify-js', function() {
+function minifyJs() {
     return gulp.src(paths.js)
         .pipe(uglify())
         .pipe(gulp.dest(paths.dist + 'scripts/'));
-});
+}
 
-gulp.task('less', function () {
+function compileLess() {
     return gulp.src(paths.less)
         .pipe(less())
         .pipe(gulp.dest(paths.dist + 'css/'));
-});
+}
 
-gulp.task('copy-fonts', function() {
+function copyFonts() {
     return gulp.src(paths.fonts)
-        .pipe(gulp.dest(paths.dist + 'fonts/'))
-});
+        .pipe(gulp.dest(paths.dist + 'fonts/'));
+}
 
-gulp.task('copy-html', function() {
+function copyHtml() {
     return gulp.src(paths.html)
-        .pipe(gulp.dest(paths.dist + 'scripts/'))
-});
+        .pipe(gulp.dest(paths.dist + 'scripts/'));
+}
 
-gulp.task('copy-images', function() {
+function copyImages() {
     return gulp.src(paths.images)
-        .pipe(gulp.dest(paths.dist + 'images/'))
-});
+        .pipe(gulp.dest(paths.dist + 'images/'));
+}
 
-gulp.task('default', ['minify-css', 'minify-js', 'less',
-          'copy-fonts', 'copy-html', 'copy-images'], function() {});
+gulp.task('minify-css', minifyCss);
+gulp.task('minify-js', minifyJs);
+gulp.task('less', compileLess);
+gulp.task('copy-fonts', copyFonts);
+gulp.task('copy-html', copyHtml);
+gulp.task('copy-images', copyImages);
+
+gulp.task('default', gulp.parallel('minify-css', 'minify-js', 'less', 'copy-fonts', 'copy-html', 'copy-images'));
