@@ -11,10 +11,6 @@
     <artifactId>spring-petclinic-server</artifactId>
     <name>Spring Petclinic :: Spring MVC REST server</name>
 
-    <properties>
-        <docker.image.prefix>arey</docker.image.prefix>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

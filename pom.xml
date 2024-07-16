@@ -19,7 +19,11 @@
 		<module>spring-petclinic-server</module>
 	</modules>
 
-	<dependencyManagement>
+    <properties>
+        <docker.image.prefix>arey</docker.image.prefix>
+    </properties>
+
+    <dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.samples</groupId>
